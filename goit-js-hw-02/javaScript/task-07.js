@@ -6,34 +6,33 @@ const isLoginValid = function(login) {
    
     let passwordLength = login.length;
     
-    if (passwordLength < 4 || passwordLength > 16) {
-    
-        return 'Error! The login has to be between 4 and 16 symbols';
-        
-    };
-    
-    return passwordLength;
+    return passwordLength < 4 || passwordLength > 16
     
     };
 
 const isLoginUnique = function(allLogins, login) {
    
-    if (allLogins.includes(login)){
-    
-        return 'The login there already is'
-    };
-    
-    return 'Please input other password';
+    return allLogins.includes(login);
       
     };
 
 const addLogin = function(allLogins, login) {
 
-    isLoginValid ();
-    isLoginUnique ();
-    login.push(allLogins); 
+    if (isLoginValid (login)) {
 
-    return 'The login was successfully added';
+        return 'Error! The login has to be between 4 and 16 symbols';
+
+    } else if (isLoginUnique(allLogins, login)) { 
+        
+        return 'The login there already is';
+    
+    } else {
+
+        allLogins.push(login); 
+
+        return 'The login was successfully added';
+
+    };    
 };
 
 /*
